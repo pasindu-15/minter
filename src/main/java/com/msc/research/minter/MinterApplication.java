@@ -8,6 +8,7 @@ public class MinterApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MinterApplication.class, args);
+		System.out.println("OKOKOKOK");
 	}
 
 }

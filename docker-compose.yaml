@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+  prometheus:
+    image: prom/prometheus:v2.35.0
+#    network_mode: host
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./data/prometheus/config:/Users/pasindu/Documents/Msc/ResearchProject/project/minter/src/main/resources/
+    command:
+#      - '--config.file=/Users/pasindu/Documents/Msc/ResearchProject/project/minter/src/main/resources/'
+      - '--config.file=/Users/pasindu/Documents/Msc/ResearchProject/project/minter/src/main/resources/prometheus.yaml'
+  grafana:
+    image: grafana/grafana-oss:8.5.2
+#    pull_policy: always
+#    network_mode: host
+    container_name: grafana
+    restart: unless-stopped
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SERVER_DOMAIN=localhost
+
+
+
+#  docker run -d --name=prometheus -p 9090:9090 -v /Users/pasindu/Documents/Msc/ResearchProject/project/minter/src/main/resources/prometheus.yaml:/etc/prometheus/prometheus.yml prom/prometheus --config.file=/etc/prometheus/prometheus.yml
+
